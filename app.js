@@ -1,6 +1,7 @@
 
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector('#reset');
+let winText = document.querySelector('#win-text');
 let turnx = true;
 
 
@@ -39,7 +40,9 @@ const handleWinner = () =>{
 
        if(pos1 !="" && pos2 !="" && pos3 !=""){
         if(pos1 === pos2 && pos2 === pos3){
-            console.log(`Winner is ${pos2}`);
+            console.log(`Winner is ${pos1}`);
+            winText.innerText = `The winner is Player ${pos1}`;
+            winText.classList.remove('hide');
             for(let box of boxes){
                 box.disabled = true;
             }
@@ -53,6 +56,7 @@ const handleWinner = () =>{
 }
 
 resetBtn.addEventListener('click',()=>{
+    winText.classList.add('hide');
     boxes.forEach((box)=>{
         box.innerText ="";
         box.disabled = false;
